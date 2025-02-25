@@ -42,16 +42,16 @@ class PatientsDataTable extends DataTable
                     ->setTableId('patients-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                 
                     ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
-                        Button::make('excel'),
+                        Button::make('excel')->extend('excel'),
                         Button::make('print'),
                         Button::make('reset'),
                         Button::make('reload')
-                    ])->parameters([     
-                        'dom' => '<"top"fB>rt<"bottom"ip>'
+                    ])->parameters([
+                        'dom' => '<"top"fB>rt<"bottom"ip>',
+                        'order' => [[0, 'asc']],
                     ]);
     }
 
@@ -61,7 +61,7 @@ class PatientsDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('id')->orderable(),
             Column::make('name'),
             Column::make('date_of_birth'),
             Column::make('phone_number'),

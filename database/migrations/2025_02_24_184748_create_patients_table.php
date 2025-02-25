@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->text('name', 100);
-            $table->timestamp('date_of_birth');
-            $table->string('email', 100);
+            $table->text('name', 100)->unique();
+            $table->date('date_of_birth');
+            $table->string('email', 100)->unique();
             $table->string('phone_number', 100);
-            $table->string('blood_group', 10);
+            $table->string('blood_group', 10)->nullable(false);
             $table->timestamps();
         });
     }
